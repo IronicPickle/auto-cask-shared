@@ -111,10 +111,7 @@ export default {
     userId: new Validator(userId).is("string").exists().regex.isMongoId(),
   }),
   invitesDelete: ({ inviteId }: Partial<OrganisationInvitesDeleteReq>) => ({
-    organisationId: new Validator(inviteId)
-      .is("string")
-      .exists()
-      .regex.isMongoId(),
+    inviteId: new Validator(inviteId).is("string").exists().regex.isMongoId(),
   }),
   invitesAccept: ({ inviteId }: Partial<OrganisationInvitesAcceptReq>) => ({
     inviteId: new Validator(inviteId).is("string").exists().regex.isMongoId(),

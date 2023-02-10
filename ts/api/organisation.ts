@@ -53,7 +53,7 @@ export interface OrganisationMembersGetReq {
   userId: string;
 }
 
-export type OrganisationMembersGetRes = OrganisationMember[];
+export type OrganisationMembersGetRes = OrganisationMember;
 
 // Remove Member
 

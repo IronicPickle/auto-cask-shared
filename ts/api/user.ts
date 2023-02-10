@@ -1,4 +1,4 @@
-import { User, UserPrivate } from "./generic";
+import { OrganisationMember, User, UserPrivate } from "./generic";
 
 // Get
 
@@ -13,3 +13,9 @@ export type UserGetRes = User;
 export interface UserGetSelfReq {}
 
 export type UserGetSelfRes = UserPrivate;
+
+// Get Organisations
+
+export interface UserGetMembershipsReq {}
+
+export type UserGetMembershipsRes = OrganisationMember[];

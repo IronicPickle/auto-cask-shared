@@ -41,3 +41,11 @@ export const parseValidators = <K extends string | number | symbol>(
 
   return { failed, ...errors };
 };
+
+export const isEmpty = (value: any) => {
+  if (value == null) return true;
+  if (value.length != null) return value.length === 0;
+  if (typeof value === "object") return Object.values(value).length === 0;
+
+  return true;
+};
