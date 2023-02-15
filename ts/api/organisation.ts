@@ -3,6 +3,7 @@ import {
   Organisation,
   OrganisationInvite,
   OrganisationMember,
+  OrganisationPump,
 } from "./generic";
 
 // Get
@@ -37,6 +38,14 @@ export interface OrganisationDeleteReq {
 }
 
 export type OrganisationDeleteRes = Organisation;
+
+// Leave
+
+export interface OrganisationLeaveReq {
+  organisationId: string;
+}
+
+export type OrganisationLeaveRes = Organisation;
 
 // Get All Members
 
@@ -86,7 +95,7 @@ export type OrganisationInvitesGetAllRes = OrganisationInvite[];
 
 export interface OrganisationInvitesCreateReq {
   organisationId: string;
-  userId: string;
+  email: string;
 }
 
 export type OrganisationInvitesCreateRes = OrganisationInvite;
@@ -106,3 +115,54 @@ export interface OrganisationInvitesAcceptReq {
 }
 
 export type OrganisationInvitesAcceptRes = OrganisationInvite;
+
+// Reject Invite
+
+export interface OrganisationInvitesRejectReq {
+  inviteId: string;
+}
+
+export type OrganisationInvitesRejectRes = OrganisationInvite;
+
+// Get All Pumps
+
+export interface OrganisationPumpsGetAllReq {
+  organisationId: string;
+}
+
+export type OrganisationPumpsGetAllRes = OrganisationPump[];
+
+// Get Pump
+
+export interface OrganisationPumpsGetReq {
+  pumpId: string;
+}
+
+export type OrganisationPumpsGetRes = OrganisationPump;
+
+// Create Pump
+
+export interface OrganisationPumpsCreateReq {
+  organisationId: string;
+  mac: string;
+  name: string;
+}
+
+export type OrganisationPumpsCreateRes = OrganisationPump;
+
+// Update Pump
+
+export interface OrganisationPumpsUpdateReq {
+  pumpId: string;
+  name: string;
+}
+
+export type OrganisationPumpsUpdateRes = OrganisationPump;
+
+// Delete Pump
+
+export interface OrganisationPumpsDeleteReq {
+  pumpId: string;
+}
+
+export type OrganisationPumpsDeleteRes = OrganisationPump;

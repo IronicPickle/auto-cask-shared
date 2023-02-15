@@ -27,7 +27,7 @@ export interface OrganisationMember {
 export interface OrganisationInvite {
   _id: string;
   organisation: Organisation;
-  user: User;
+  email: string;
   createdOn: string;
 }
 
@@ -39,4 +39,18 @@ export interface User {
 
 export interface UserPrivate extends User {
   email: string;
+}
+
+export interface OrganisationPump {
+  _id: string;
+  organisation: Organisation;
+  pumpClient: PumpClient;
+  name: string;
+  createdOn: string;
+}
+
+export interface PumpClient {
+  _id: string;
+  mac: string;
+  createdOn: string;
 }

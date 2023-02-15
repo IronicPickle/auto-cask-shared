@@ -1,5 +1,7 @@
+import { PumpClient } from "./generic";
+
 export interface SendFingerprintReq {
   userId: string;
 }
 
-export interface SendFingerprintRes {}
+export type SendFingerprintRes = PumpClient;

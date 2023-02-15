@@ -49,3 +49,6 @@ export const isEmpty = (value: any) => {
 
   return true;
 };
+
+export const escapeRegExp = (string: string) =>
+  string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

@@ -1,4 +1,8 @@
-import { emailRegex, mongoIdRegex } from "../constants/generic";
+import {
+  emailRegex,
+  macAddressRegex,
+  mongoIdRegex,
+} from "../constants/generic";
 import { enumContains } from "./generic";
 
 type Type = "array" | "object" | "boolean" | "number" | "string";
@@ -168,6 +172,12 @@ export default class Validator {
       this.regex.matches(
         mongoIdRegex,
         message ?? "Ids must be a string of 24 hex characters"
+      ),
+    isMacAddress: (message?: string) =>
+      this.regex.matches(
+        macAddressRegex,
+        message ??
+          "Mac addresses must be a string of 12 hex characters, seperated by colons"
       ),
   };
 
