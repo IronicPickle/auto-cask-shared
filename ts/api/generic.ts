@@ -52,5 +52,6 @@ export interface OrganisationPump {
 export interface PumpClient {
   _id: string;
   mac: string;
+  fingerprintedUsers: User;
   createdOn: string;
 }

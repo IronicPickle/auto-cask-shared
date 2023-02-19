@@ -6,7 +6,11 @@ export interface PumpClientSetupReq {
   mac: string;
 }
 
-export type PumpClientSetupRes = PumpClient & { accessToken: string };
+export type PumpClientSetupRes = PumpClient & {
+  publicKey: string;
+  secretKey: string;
+  serverPublicKey: string;
+};
 
 // Fingerprint
 

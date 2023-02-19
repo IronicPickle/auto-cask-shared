@@ -12,11 +12,11 @@ export const getZmqRoutingId = (frames: Buffer[]) => {
   return routingId;
 };
 
-export const getZmqData = (frames: Buffer[], index: number) => {
+export const zmqDeserialise = (frame: Buffer) => {
   let data: ZmqRequest | null = null;
 
   try {
-    data = JSON.parse(frames[index].toString());
+    data = JSON.parse(frame.toString());
   } catch (err) {
     console.error(err);
   }
@@ -24,7 +24,7 @@ export const getZmqData = (frames: Buffer[], index: number) => {
   return data;
 };
 
-export const serialiseZmqRequest = (type: string, data: Record<any, any>) =>
+export const zmqSerialise = (type: string, data?: Record<any, any>) =>
   JSON.stringify({
     type,
     data,
