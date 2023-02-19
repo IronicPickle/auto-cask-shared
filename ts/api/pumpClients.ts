@@ -2,21 +2,25 @@ import { PumpClient } from "./generic";
 
 // Setup
 
-export interface PumpClientSetupReq {
-  mac: string;
+export interface PumpClientSetup {
+  body: {
+    mac: string;
+  };
+  res: PumpClient & {
+    publicKey: string;
+    secretKey: string;
+    serverPublicKey: string;
+  };
 }
-
-export type PumpClientSetupRes = PumpClient & {
-  publicKey: string;
-  secretKey: string;
-  serverPublicKey: string;
-};
 
 // Fingerprint
 
-export interface PumpClientFingerprintReq {
-  mac: string;
-  userId: string;
+export interface PumpClientFingerprint {
+  params: {
+    mac: string;
+  };
+  body: {
+    userId: string;
+  };
+  res: PumpClient;
 }
-
-export type PumpClientFingerprintRes = PumpClient;

@@ -1,5 +1,6 @@
+import { Login, Refresh, Register } from "../ts/api/auth";
+import { ValidatorInputs } from "../ts/api/generic";
 import Validator from "../utils/Validator";
-import { RegisterReq, LoginReq, RefreshReq } from "../ts/api/auth";
 
 export default {
   register: ({
@@ -7,7 +8,7 @@ export default {
     password,
     displayName,
     confirmPassword,
-  }: Partial<RegisterReq & { confirmPassword?: string }>) => ({
+  }: ValidatorInputs<Register> & { confirmPassword?: string }) => ({
     email: new Validator(email).exists().is("string").regex.isEmail(),
     password: new Validator(password)
       .is("string")
@@ -26,11 +27,11 @@ export default {
         confirmPassword !== password ? "Passwords don't match" : ""
       ),
   }),
-  login: ({ email, password }: Partial<LoginReq>) => ({
+  login: ({ email, password }: ValidatorInputs<Login>) => ({
     email: new Validator(email).exists().is("string").regex.isEmail(),
     password: new Validator(password).is("string").exists(),
   }),
-  refresh: ({ refreshToken }: Partial<RefreshReq>) => ({
+  refresh: ({ refreshToken }: ValidatorInputs<Refresh>) => ({
     refreshToken: new Validator(refreshToken).exists().is("string"),
   }),
 };

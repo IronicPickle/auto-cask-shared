@@ -1,42 +1,43 @@
 import Validator from "../utils/Validator";
 import {
-  OrganisationCreateReq,
-  OrganisationDeleteReq,
-  OrganisationGetReq,
-  OrganisationInvitesAcceptReq,
-  OrganisationInvitesCreateReq,
-  OrganisationInvitesDeleteReq,
-  OrganisationInvitesGetAllReq,
-  OrganisationInvitesRejectReq,
-  OrganisationLeaveReq,
-  OrganisationMembersGetAllReq,
-  OrganisationMembersGetReq,
-  OrganisationMembersRemoveReq,
-  OrganisationMembersRoleUpdateReq,
-  OrganisationPumpsCreateReq,
-  OrganisationPumpsDeleteReq,
-  OrganisationPumpsGetAllReq,
-  OrganisationPumpsGetReq,
-  OrganisationPumpsUpdateReq,
-  OrganisationUpdateReq,
-} from "../ts/api/organisation";
+  OrganisationsCreate,
+  OrganisationsDelete,
+  OrganisationsGet,
+  OrganisationsInvitesAccept,
+  OrganisationsInvitesCreate,
+  OrganisationsInvitesDelete,
+  OrganisationsInvitesGetAll,
+  OrganisationsInvitesReject,
+  OrganisationsLeave,
+  OrganisationsMembersGet,
+  OrganisationsMembersGetAll,
+  OrganisationsMembersRemove,
+  OrganisationsMembersRoleUpdate,
+  OrganisationsPumpsCreate,
+  OrganisationsPumpsDelete,
+  OrganisationsPumpsGet,
+  OrganisationsPumpsGetAll,
+  OrganisationsPumpsUpdate,
+  OrganisationsUpdate,
+} from "../ts/api/organisations";
 import { OrganisationRole } from "../enums/api/generic";
+import { ValidatorInputs } from "../ts/api/generic";
 
 export default {
-  get: ({ organisationId }: Partial<OrganisationGetReq>) => ({
+  get: ({ organisationId }: ValidatorInputs<OrganisationsGet>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
       .regex.isMongoId(),
   }),
-  create: ({ name }: Partial<OrganisationCreateReq>) => ({
+  create: ({ name }: ValidatorInputs<OrganisationsCreate>) => ({
     name: new Validator(name)
       .is("string")
       .exists()
       .length.greaterThanOrEqualTo(3)
       .length.lessThanOrEqualTo(50),
   }),
-  update: ({ organisationId, name }: Partial<OrganisationUpdateReq>) => ({
+  update: ({ organisationId, name }: ValidatorInputs<OrganisationsUpdate>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -47,13 +48,13 @@ export default {
       .length.greaterThanOrEqualTo(3)
       .length.lessThanOrEqualTo(50),
   }),
-  delete: ({ organisationId }: Partial<OrganisationDeleteReq>) => ({
+  delete: ({ organisationId }: ValidatorInputs<OrganisationsDelete>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
       .regex.isMongoId(),
   }),
-  leave: ({ organisationId }: Partial<OrganisationLeaveReq>) => ({
+  leave: ({ organisationId }: ValidatorInputs<OrganisationsLeave>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -61,7 +62,7 @@ export default {
   }),
   membersGetAll: ({
     organisationId,
-  }: Partial<OrganisationMembersGetAllReq>) => ({
+  }: ValidatorInputs<OrganisationsMembersGetAll>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -70,7 +71,7 @@ export default {
   membersGet: ({
     organisationId,
     userId,
-  }: Partial<OrganisationMembersGetReq>) => ({
+  }: ValidatorInputs<OrganisationsMembersGet>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -80,7 +81,7 @@ export default {
   membersRemove: ({
     organisationId,
     userId,
-  }: Partial<OrganisationMembersRemoveReq>) => ({
+  }: ValidatorInputs<OrganisationsMembersRemove>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -91,7 +92,7 @@ export default {
     organisationId,
     userId,
     role,
-  }: Partial<OrganisationMembersRoleUpdateReq>) => ({
+  }: ValidatorInputs<OrganisationsMembersRoleUpdate>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -107,7 +108,7 @@ export default {
   }),
   invitesGetAll: ({
     organisationId,
-  }: Partial<OrganisationInvitesGetAllReq>) => ({
+  }: ValidatorInputs<OrganisationsInvitesGetAll>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -116,26 +117,56 @@ export default {
   invitesCreate: ({
     organisationId,
     email,
-  }: Partial<OrganisationInvitesCreateReq>) => ({
+  }: ValidatorInputs<OrganisationsInvitesCreate>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
       .regex.isMongoId(),
     email: new Validator(email).is("string").exists().regex.isEmail(),
   }),
-  invitesDelete: ({ inviteId }: Partial<OrganisationInvitesDeleteReq>) => ({
+  invitesDelete: ({
+    inviteId,
+    organisationId,
+  }: ValidatorInputs<OrganisationsInvitesDelete>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
     inviteId: new Validator(inviteId).is("string").exists().regex.isMongoId(),
   }),
-  invitesAccept: ({ inviteId }: Partial<OrganisationInvitesAcceptReq>) => ({
+  invitesAccept: ({
+    inviteId,
+    organisationId,
+  }: ValidatorInputs<OrganisationsInvitesAccept>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
     inviteId: new Validator(inviteId).is("string").exists().regex.isMongoId(),
   }),
-  invitesReject: ({ inviteId }: Partial<OrganisationInvitesRejectReq>) => ({
+  invitesReject: ({
+    inviteId,
+    organisationId,
+  }: ValidatorInputs<OrganisationsInvitesReject>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
     inviteId: new Validator(inviteId).is("string").exists().regex.isMongoId(),
   }),
-  pumpsGet: ({ pumpId }: Partial<OrganisationPumpsGetReq>) => ({
+  pumpsGet: ({
+    organisationId,
+    pumpId,
+  }: ValidatorInputs<OrganisationsPumpsGet>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
     pumpId: new Validator(pumpId).is("string").exists().regex.isMongoId(),
   }),
-  pumpsGetAll: ({ organisationId }: Partial<OrganisationPumpsGetAllReq>) => ({
+  pumpsGetAll: ({
+    organisationId,
+  }: ValidatorInputs<OrganisationsPumpsGetAll>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -145,7 +176,7 @@ export default {
     organisationId,
     mac,
     name,
-  }: Partial<OrganisationPumpsCreateReq>) => ({
+  }: ValidatorInputs<OrganisationsPumpsCreate>) => ({
     organisationId: new Validator(organisationId)
       .is("string")
       .exists()
@@ -157,7 +188,15 @@ export default {
       .length.greaterThanOrEqualTo(3)
       .length.lessThanOrEqualTo(50),
   }),
-  pumpsUpdate: ({ pumpId, name }: Partial<OrganisationPumpsUpdateReq>) => ({
+  pumpsUpdate: ({
+    organisationId,
+    pumpId,
+    name,
+  }: ValidatorInputs<OrganisationsPumpsUpdate>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
     pumpId: new Validator(pumpId).is("string").exists().regex.isMongoId(),
     name: new Validator(name)
       .is("string")
@@ -165,7 +204,14 @@ export default {
       .length.greaterThanOrEqualTo(3)
       .length.lessThanOrEqualTo(50),
   }),
-  pumpsDelete: ({ pumpId }: Partial<OrganisationPumpsDeleteReq>) => ({
+  pumpsDelete: ({
+    organisationId,
+    pumpId,
+  }: ValidatorInputs<OrganisationsPumpsDelete>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
     pumpId: new Validator(pumpId).is("string").exists().regex.isMongoId(),
   }),
 };

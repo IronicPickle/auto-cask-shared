@@ -1,14 +1,12 @@
 import Validator from "../utils/Validator";
-import {
-  PumpClientSetupReq,
-  PumpClientFingerprintReq,
-} from "../ts/api/pumpClients";
+import { PumpClientSetup, PumpClientFingerprint } from "../ts/api/pumpClients";
+import { ValidatorInputs } from "../ts/api/generic";
 
 export default {
-  setup: ({ mac }: Partial<PumpClientSetupReq>) => ({
+  setup: ({ mac }: ValidatorInputs<PumpClientSetup>) => ({
     mac: new Validator(mac).is("string").exists().regex.isMacAddress(),
   }),
-  fingerprint: ({ mac, userId }: Partial<PumpClientFingerprintReq>) => ({
+  fingerprint: ({ mac, userId }: ValidatorInputs<PumpClientFingerprint>) => ({
     mac: new Validator(mac).is("string").exists().regex.isMacAddress(),
     userId: new Validator(userId).is("string").exists().regex.isMongoId(),
   }),

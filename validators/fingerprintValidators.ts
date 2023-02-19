@@ -1,8 +1,9 @@
 import Validator from "../utils/Validator";
-import { SendFingerprintReq } from "../ts/api/fingerprint";
+import { CreateFingerprint } from "../ts/api/fingerprint";
+import { ValidatorInputs } from "../ts/api/generic";
 
 export default {
-  send: ({ userId }: Partial<SendFingerprintReq>) => ({
+  create: ({ userId }: ValidatorInputs<CreateFingerprint>) => ({
     id: new Validator(userId).exists().is("string"),
   }),
 };

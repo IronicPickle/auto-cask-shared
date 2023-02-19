@@ -1,8 +1,9 @@
 import Validator from "../utils/Validator";
-import { UserGetReq } from "../ts/api/user";
+import { UserGet } from "../ts/api/users";
+import { ValidatorInputs } from "../ts/api/generic";
 
 export default {
-  get: ({ userId }: Partial<UserGetReq>) => ({
+  get: ({ userId }: ValidatorInputs<UserGet>) => ({
     userId: new Validator(userId).is("string").exists().regex.isMongoId(),
   }),
 };

@@ -1,5 +1,42 @@
 import { OrganisationRole } from "../../enums/api/generic";
 
+export interface RequestDetails {
+  params?: {};
+  body?: {};
+  query?: {};
+  res: {};
+}
+
+export type RequestInputs<D extends RequestDetails> = Omit<D, "res">;
+
+export type ValidatorInputs<D extends RequestDetails> = Partial<
+  D["params"] & D["body"] & D["query"]
+>;
+
+export type ReqParams<
+  R extends {
+    params: object;
+  }
+> = Partial<R["params"]>;
+
+export type ReqBody<
+  R extends {
+    body: object;
+  }
+> = Partial<R["body"]>;
+
+export type ReqQuery<
+  R extends {
+    query: object;
+  }
+> = Partial<R["query"]>;
+
+export type ReqRes<
+  R extends {
+    res: object;
+  }
+> = R["res"];
+
 export type ValidationErrors<K extends string | number | symbol> = {
   failed: boolean;
 } & Partial<Record<K, string[]>>;

@@ -1,28 +1,31 @@
-export interface RegisterReq {
-  email: string;
-  password: string;
-  displayName: string;
+export interface Register {
+  body: {
+    email: string;
+    password: string;
+    displayName: string;
+  };
+  res: {
+    accessToken: string;
+    refreshToken: string;
+  };
 }
 
-export interface RegisterRes {
-  accessToken: string;
-  refreshToken: string;
+export interface Login {
+  body: {
+    email: string;
+    password: string;
+  };
+  res: {
+    accessToken: string;
+    refreshToken: string;
+  };
 }
 
-export interface LoginReq {
-  email: string;
-  password: string;
-}
-
-export interface LoginRes {
-  accessToken: string;
-  refreshToken: string;
-}
-
-export interface RefreshReq {
-  refreshToken: string;
-}
-
-export interface RefreshRes {
-  accessToken: string;
+export interface Refresh {
+  body: {
+    refreshToken: string;
+  };
+  res: {
+    accessToken: string;
+  };
 }
