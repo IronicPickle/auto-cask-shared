@@ -118,4 +118,8 @@ export default class OrganisationPermissionChecker {
       return true;
     return false;
   }
+
+  public canUpdatePumpsBadge(user: any) {
+    return this.isMember(user);
+  }
 }

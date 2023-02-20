@@ -201,3 +201,16 @@ export interface OrganisationsPumpsDelete {
   };
   res: OrganisationPump;
 }
+
+// Update Pump Badge
+
+export interface OrganisationsPumpsBadgeUpdate {
+  params: {
+    organisationId: string;
+    pumpId: string;
+  };
+  body: {
+    badgeId: string;
+  };
+  res: OrganisationPump;
+}

@@ -82,6 +82,7 @@ export interface OrganisationPump {
   _id: string;
   organisation: Organisation;
   pumpClient: PumpClient;
+  badge?: Badge;
   name: string;
   createdOn: string;
 }
@@ -90,5 +91,13 @@ export interface PumpClient {
   _id: string;
   mac: string;
   fingerprintedUsers: User;
+  createdOn: string;
+}
+
+export interface Badge {
+  _id: string;
+  name: string;
+  breweryName: string;
+  createdBy: User;
   createdOn: string;
 }

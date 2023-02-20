@@ -13,6 +13,7 @@ import {
   OrganisationsMembersGetAll,
   OrganisationsMembersRemove,
   OrganisationsMembersRoleUpdate,
+  OrganisationsPumpsBadgeUpdate,
   OrganisationsPumpsCreate,
   OrganisationsPumpsDelete,
   OrganisationsPumpsGet,
@@ -213,5 +214,17 @@ export default {
       .exists()
       .regex.isMongoId(),
     pumpId: new Validator(pumpId).is("string").exists().regex.isMongoId(),
+  }),
+  pumpsBadgeUpdate: ({
+    organisationId,
+    pumpId,
+    badgeId,
+  }: ValidatorInputs<OrganisationsPumpsBadgeUpdate>) => ({
+    organisationId: new Validator(organisationId)
+      .is("string")
+      .exists()
+      .regex.isMongoId(),
+    pumpId: new Validator(pumpId).is("string").exists().regex.isMongoId(),
+    badgeId: new Validator(badgeId).is("string").exists().regex.isMongoId(),
   }),
 };
