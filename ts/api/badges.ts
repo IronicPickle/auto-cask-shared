@@ -21,7 +21,6 @@ export interface BadgesCreate {
   body: {
     name: string;
     breweryName: string;
-    // img: string;
   };
   res: Badge;
 }
@@ -35,7 +34,6 @@ export interface BadgesUpdate {
   body: {
     name: string;
     breweryName: string;
-    // img: string;
   };
   res: Badge;
 }
@@ -46,5 +44,15 @@ export interface BadgesDelete {
   params: {
     badgeId: string;
   };
+  res: Badge;
+}
+
+// Update Image
+
+export interface BadgesImageUpdate {
+  params: {
+    badgeId: string;
+  };
+  body: {};
   res: Badge;
 }

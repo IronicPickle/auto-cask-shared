@@ -3,6 +3,7 @@ import {
   BadgesCreate,
   BadgesDelete,
   BadgesGet,
+  BadgesImageUpdate,
   BadgesUpdate,
 } from "../ts/api/badges";
 import { ValidatorInputs } from "../ts/api/generic";
@@ -37,6 +38,9 @@ export default {
       .length.lessThanOrEqualTo(50),
   }),
   delete: ({ badgeId }: ValidatorInputs<BadgesDelete>) => ({
+    badgeId: new Validator(badgeId).is("string").exists().regex.isMongoId(),
+  }),
+  updateImage: ({ badgeId }: ValidatorInputs<BadgesImageUpdate>) => ({
     badgeId: new Validator(badgeId).is("string").exists().regex.isMongoId(),
   }),
 };
