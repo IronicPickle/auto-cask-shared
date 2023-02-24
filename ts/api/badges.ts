@@ -53,6 +53,12 @@ export interface BadgesImageUpdate {
   params: {
     badgeId: string;
   };
-  body: {};
+  body: {
+    image: {
+      uri?: string;
+      type?: string;
+      fileName?: string;
+    };
+  };
   res: Badge;
 }
