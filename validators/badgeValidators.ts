@@ -4,6 +4,7 @@ import {
   BadgesDelete,
   BadgesGet,
   BadgesImageUpdate,
+  BadgesQrcodeGet,
   BadgesUpdate,
 } from "../ts/api/badges";
 import { ValidatorInputs } from "../ts/api/generic";
@@ -41,6 +42,9 @@ export default {
     badgeId: new Validator(badgeId).is("string").exists().regex.isMongoId(),
   }),
   updateImage: ({ badgeId }: ValidatorInputs<BadgesImageUpdate>) => ({
+    badgeId: new Validator(badgeId).is("string").exists().regex.isMongoId(),
+  }),
+  getQrcode: ({ badgeId }: ValidatorInputs<BadgesQrcodeGet>) => ({
     badgeId: new Validator(badgeId).is("string").exists().regex.isMongoId(),
   }),
 };

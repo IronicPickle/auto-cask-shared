@@ -1,5 +1,6 @@
 export enum ZmqRequestType {
   PumpAssociated = "PUMP_ASSOCIATED",
   PumpUnassociated = "PUMP_UNASSOCIATED",
-  BadgeChanged = "BADGE_CHANGED",
+  BadgeData = "BADGE_DATA",
+  GetBadge = "GET_BADGE",
 }

@@ -62,3 +62,13 @@ export interface BadgesImageUpdate {
   };
   res: Badge;
 }
+
+// Get QRCode
+
+export interface BadgesQrcodeGet {
+  params: {
+    badgeId: string;
+    fileName?: string;
+  };
+  res: string;
+}
